@@ -39,14 +39,11 @@ d3.json("samples.json").then(function(data) {
 // }
 
 
-d3.json("samples.json").then(function metadata(id){
-  console.log(id);
-  metadata.filter(sampleObj => sampleObj.id == sample);
-}
+// d3.json("samples.json").then(function metadata(id){
+//   console.log(id);
+//   metadata.filter(sampleObj => sampleObj.id == sample);
+// }
 
-function optionChanged(id){
-  metadata(id);
-
-
-}
-
+// function optionChanged(id){
+//   metadata(id);
+// }
