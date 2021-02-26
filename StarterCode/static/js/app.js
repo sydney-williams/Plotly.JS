@@ -38,12 +38,17 @@ d3.json("samples.json").then(function(data) {
 //     PLotly the new id
 // }
 
+function buildTable(id){
+d3.json("samples.json").then(function(data){
+  console.log(data['metadata']);
+  var metadata = data['metadata']
+  metadata.filter(sampleObj => sampleObj.id == id);
+  console.log('metadata')
+})
+}//end of buildTable Function
 
-// d3.json("samples.json").then(function metadata(id){
-//   console.log(id);
-//   metadata.filter(sampleObj => sampleObj.id == sample);
-// }
+buildTable("941")
 
-// function optionChanged(id){
-//   metadata(id);
-// }
+function optionChanged(id){
+  metadata(id);
+}
