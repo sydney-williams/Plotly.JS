@@ -63,5 +63,35 @@ d3.json("samples.json").then(function(data){
 
 function optionChanged(id){
   buildTable(id);
+  buildBarChart(id);
 }
+
+// function barPlot(id){
+//   x = 'otu_ids'
+//   y =  'sample_values'
+//   text = 'otu_labels'
+//   type = 'bar'
+//   Plotly.barPlot
+// }
+
+function buildBarChart(id){
+  console.log("reading file")
+  d3.json("samples.json").then(function(data){
+    //console.log(data['metadata']);
+    var filteredSamples = data['samples'].filter(sampleObj => sampleObj.id == id);
+    var result = filteredSamples[0]   
+
+    var data = [
+      {
+        x: result.otu_ids.slice(0, 10).map(otuId => `OTU ${otuId}`).reverse(),
+        y: result.sample_values.slice(0, 10).reverse(),
+        text: result.otu_labels.slice(0, 10).reverse(),
+        type: 'bar'
+      }
+    ];
+    Plotly.newPlot('bar', data);
+  })
+
+  
+  }//end of buildBarChart Function
 
