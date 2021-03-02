@@ -64,6 +64,7 @@ d3.json("samples.json").then(function(data){
 function optionChanged(id){
   buildTable(id);
   buildBarChart(id);
+  buildBubbleChart(id);
 }
 
 // function barPlot(id){
@@ -94,4 +95,25 @@ function buildBarChart(id){
 
   
   }//end of buildBarChart Function
+
+function buildBubbleChart(id){
+  console.log("reading file")
+  d3.json("samples.json").then(function(data){
+    var filteredSamples = data['samples'].filter(sampleObj => sampleObj.id ==id);
+    var result = filteredSamples[0]
+    var data = [
+      {
+        x: result.otu_ids.map(otuId => `OTU ${otuId}` ),
+        y: result.sample_values,
+        mode: 'markers',
+        marker:{
+          size: result.sample_values ,
+          color: result.otu_ids
+        },
+        text: result.otu_labels,
+      }
+    ];
+    Plotly.newPlot('bubble', data);
+  })
+}//end of buildBubbleChart Function
 
